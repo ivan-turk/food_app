@@ -7,7 +7,7 @@ export const sample_foods = [
     favorite: false,
     stars: 4.5,
     imageUrl: "food-1.jpg",
-    tags: ["FastFood", "Pizza", "Lunch"],
+    tags: ["Gotovi menu"],
   },
   {
     id: "2",
@@ -17,7 +17,7 @@ export const sample_foods = [
     favorite: true,
     stars: 5,
     imageUrl: "food-2.jpg",
-    tags: ["SlowFood", "Lunch"],
+    tags: ["Gotovi menu"],
   },
   {
     id: "3",
@@ -27,7 +27,7 @@ export const sample_foods = [
     favorite: false,
     stars: 3.5,
     imageUrl: "food-3.jpg",
-    tags: ["FastFood", "Hamburger"],
+    tags: ["Gotovi menu"],
   },
   {
     id: "4",
@@ -37,7 +37,7 @@ export const sample_foods = [
     favorite: true,
     stars: 3,
     imageUrl: "food-4.jpg",
-    tags: ["FastFood", "Fry"],
+    tags: ["Gotovi menu"],
   },
   {
     id: "5",
@@ -47,7 +47,7 @@ export const sample_foods = [
     favorite: false,
     stars: 3.5,
     imageUrl: "food-5.jpg",
-    tags: ["SlowFood", "Soup"],
+    tags: ["Gotovi menu"],
   },
   {
     id: "6",
@@ -57,6 +57,20 @@ export const sample_foods = [
     favorite: false,
     stars: 4.0,
     imageUrl: "food-6.jpg",
-    tags: ["FastFood", "Pizza", "Lunch"],
+    tags: ["Plate"],
   },
+];
+
+export const sample_tags = [
+  { name: "Sve", count: 6 },
+  { name: "Gotovi menu", count: 5 },
+  { name: "Plate", count: 1 },
+  { name: "Junetina", count: 0 },
+  { name: "Junetina sa svinjetinom", count: 0 },
+  { name: "Svinjetina", count: 0 },
+  { name: "Piletina i pohano", count: 0 },
+  { name: "Za djecu", count: 0 },
+  { name: "Salate", count: 0 },
+  { name: "Deserti", count: 0 },
+  { name: "Prilozi i dodaci", count: 0 },
 ];

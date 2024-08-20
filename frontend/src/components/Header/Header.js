@@ -8,7 +8,7 @@ export default function Header() {
   };
 
   const cart = {
-    totalCount: 10,
+    totalCount: 2,
   };
 
   const logout = () => {};

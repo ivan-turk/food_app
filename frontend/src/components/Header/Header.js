@@ -1,15 +1,14 @@
 import React from "react";
 import classes from "./header.module.css";
 import { Link } from "react-router-dom";
+import { useCart } from "../../hooks/useCart";
 
 export default function Header() {
   const user = {
     name: "Ivan",
   };
 
-  const cart = {
-    totalCount: 2,
-  };
+  const { cart } = useCart();
 
   const logout = () => {};
 

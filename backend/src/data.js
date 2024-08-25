@@ -81,3 +81,23 @@ export const sample_tags = [
   { name: "Deserti", count: 0 },
   { name: "Prilozi i dodaci", count: 0 },
 ];
+
+export const sample_users = [
+  {
+    id: 1,
+    name: "Ivan Turk",
+    email: "ivan.ogulin@gmail.com",
+    password: "12345",
+    adress: "Ogulin",
+    isAdmin: false,
+  },
+
+  {
+    id: 2,
+    name: "Matea Holjevac",
+    email: "holja077@gmail.com",
+    password: "12345",
+    adress: "Ogulin",
+    isAdmin: true,
+  },
+];

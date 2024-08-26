@@ -1,23 +1,25 @@
 import { Router } from "express";
-import { sample_users } from "../data.js";
 import jwt from "jsonwebtoken";
-import { BAD_REQUEST } from "../constants/httpStatus.js";
-
 const router = Router();
+import { BAD_REQUEST } from "../constants/httpStatus.js";
+import handler from "express-async-handler";
+import { UserModel } from "../models/user.model.js";
+import bcrypt from "bcryptjs";
 
-router.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  const user = sample_users.find(
-    (user) => user.email === email && user.password === password
-  );
+router.post(
+  "/login",
+  handler(async (req, res) => {
+    const { email, password } = req.body;
+    const user = await UserModel.findOne({ email });
 
-  if (user) {
-    res.send(generateTokenResponse(user));
-    return;
-  }
+    if (user && (await bcrypt.compare(password, user.password))) {
+      res.send(generateTokenResponse(user));
+      return;
+    }
 
-  res.status(BAD_REQUEST).send("Netočno korisničko ime ili lozinka!");
-});
+    res.status(BAD_REQUEST).send("Netočno korisničko ime ili lozinka!");
+  })
+);
 
 // generirani token za enkripciju podataka iz json web token modula
 const generateTokenResponse = (user) => {
@@ -27,7 +29,7 @@ const generateTokenResponse = (user) => {
       email: user.email,
       isAdmin: user.isAdmin,
     },
-    "Neki random text",
+    process.env.JWT_SECRET,
     {
       expiresIn: "30d",
     }

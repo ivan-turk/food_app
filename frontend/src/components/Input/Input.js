@@ -11,9 +11,9 @@ function Input(
     //defaults
     switch (error.type) {
       case "required":
-        return "This Field Is Required";
+        return "Ovo polje je obavezno";
       case "minLength":
-        return "Field Is Too Short";
+        return "Ovo polje je prekratko";
       default:
         return "*";
     }

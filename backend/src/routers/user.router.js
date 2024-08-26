@@ -71,7 +71,7 @@ const generateTokenResponse = (user) => {
     id: user.id,
     email: user.email,
     name: user.name,
-    adress: user.adress,
+    address: user.address,
     isAdmin: user.isAdmin,
     token,
   };

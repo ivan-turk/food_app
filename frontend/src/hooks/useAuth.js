@@ -7,6 +7,8 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(userService.getUser());
 
+  // Funkcija za prijavu iz sustava:
+
   const login = async (email, password) => {
     try {
       const user = await userService.login(email, password);
@@ -17,6 +19,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Funkcija za registraciju:
+  const register = async (data) => {
+    try {
+      const user = await userService.register(data);
+      setUser(user);
+      toast.success("Uspješna registracija!");
+    } catch (err) {
+      toast.error(err.response.data);
+    }
+  };
+
+  // Funkcija za odjavu iz sustava:
   const logout = () => {
     userService.logout();
     setUser(null);
@@ -24,7 +38,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   );

@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
       setUser(user);
       toast.success("Uspješno ste prijavljeni!");
     } catch (err) {
-      toast.error(err.resposne.data);
+      toast.error(err.response.data);
     }
   };
 

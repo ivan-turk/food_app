@@ -11,6 +11,7 @@ import Title from "../../components/Title/Title";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import OrderItemsList from "../../components/OrderItemsList/OrderItemsList";
+import Map from "../../components/Map/Map";
 
 export default function CheckoutPage() {
   const { cart } = useCart();
@@ -58,6 +59,12 @@ export default function CheckoutPage() {
 
         <div>
           <Title title="Izaberite vašu lokaciju za dostavu" fontSize="1.6rem" />
+          <Map
+            location={order.addressLatLng}
+            onChange={(latlng) => {
+              setOrder({ ...order, addressLatLng: latlng });
+            }}
+          />
         </div>
 
         <div className={classes.buttons_container}>

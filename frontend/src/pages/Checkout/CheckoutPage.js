@@ -12,7 +12,6 @@ import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import OrderItemsList from "../../components/OrderItemsList/OrderItemsList";
 import Map from "../../components/Map/Map";
-
 export default function CheckoutPage() {
   const { cart } = useCart();
   const { user } = useAuth();
@@ -27,7 +26,7 @@ export default function CheckoutPage() {
 
   const submit = async (data) => {
     if (!order.addressLatLng) {
-      toast.warning("Molimo odaberite vašu lokaciju na karti!");
+      toast.warning("Molimo izaberite lokaciju na karti");
       return;
     }
 
@@ -39,7 +38,7 @@ export default function CheckoutPage() {
     <>
       <form onSubmit={handleSubmit(submit)} className={classes.container}>
         <div className={classes.content}>
-          <Title title="Narudžba odabranih artikala" fontSize="1.6rem" />
+          <Title title="Podaci o narudžbi" fontSize="1.6rem" />
           <div className={classes.inputs}>
             <Input
               defaultValue={user.name}
@@ -56,12 +55,12 @@ export default function CheckoutPage() {
           </div>
           <OrderItemsList order={order} />
         </div>
-
         <div>
-          <Title title="Izaberite vašu lokaciju za dostavu" fontSize="1.6rem" />
+          <Title title="Izaberite lokaciju za dostavu" fontSize="1.6rem" />
           <Map
             location={order.addressLatLng}
             onChange={(latlng) => {
+              console.log(latlng);
               setOrder({ ...order, addressLatLng: latlng });
             }}
           />
@@ -71,7 +70,7 @@ export default function CheckoutPage() {
           <div className={classes.buttons}>
             <Button
               type="submit"
-              text="Idi na naplatu"
+              text="Zaključi narudžbu"
               width="100%"
               height="3rem"
             />

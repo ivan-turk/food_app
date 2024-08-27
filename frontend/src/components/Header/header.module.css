@@ -4,11 +4,20 @@
   border-bottom: 1px solid #e72929;
 }
 
-.header a {
+.header a,
+.logout_button {
   color: #af1313;
+  padding: 1rem;
+  display: inline-block;
+  border: none;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
-.header a:hover {
+.header a:hover,
+.logout_button:hover {
   background: #e72929;
   color: white;
   cursor: pointer;
@@ -51,7 +60,8 @@
   display: block;
 }
 
-.menu a {
+.menu a,
+.menu .logout_button {
   width: 100%;
   min-width: 8rem;
 }
@@ -62,4 +72,16 @@
   padding: 0.1rem 0.45rem;
   border-radius: 100rem;
   font-size: 0.9rem;
+}
+
+.logout_button {
+  padding: 1rem;
+  color: #af1313;
+  background: none;
+  border: none;
+  font: inherit;
+  text-align: left;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
 }

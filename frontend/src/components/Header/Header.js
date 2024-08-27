@@ -23,7 +23,9 @@ export default function Header() {
                 <div className={classes.menu}>
                   <Link to="/profile">Moj profil</Link>
                   <Link to="/orders">Moje narudžbe</Link>
-                  <a onClick={logout}>Odjava korisnika</a>
+                  <button onClick={logout} className={classes.logout_button}>
+                    Odjava korisnika
+                  </button>
                 </div>
               </li>
             ) : (

@@ -1,0 +1,18 @@
+.container {
+  background-color: #ffffffea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  padding: 2rem;
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container h1 {
+  color: brown;
+  font-size: 2rem;
+}

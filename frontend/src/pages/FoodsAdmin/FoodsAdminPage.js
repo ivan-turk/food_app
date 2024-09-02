@@ -32,11 +32,11 @@ export default function FoodsAdminPage() {
   };
 
   const deleteFood = async (food) => {
-    const confirmed = window.confirm(`Delete Food ${food.name}?`);
+    const confirmed = window.confirm(`Obrisati artikl ${food.name}?`);
     if (!confirmed) return;
 
     await deleteById(food.id);
-    toast.success(`"${food.name}" Has Been Removed!`);
+    toast.success(`"${food.name}" artikl je uspješno obrisan!`);
     setFoods(foods.filter((f) => f.id !== food.id));
   };
 

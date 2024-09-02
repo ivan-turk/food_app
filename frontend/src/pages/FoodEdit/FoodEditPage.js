@@ -40,12 +40,12 @@ export default function FoodEditPage() {
 
     if (isEditMode) {
       await update(food);
-      toast.success(`Food "${food.name}" updated successfully!`);
+      toast.success(`Artikl "${food.name}" uspješno ažuriran!`);
       return;
     }
 
     const newFood = await add(food);
-    toast.success(`Food "${food.name}" added successfully!`);
+    toast.success(`Artikl "${food.name}" uspješno dodan!`);
     navigate("/admin/editFood/" + newFood.id, { replace: true });
   };
 

@@ -45,7 +45,7 @@ const allItems = [
     color: "white",
   },
   {
-    title: "Kupci",
+    title: "Korisnici",
     imageUrl: "/icons/users.svg",
     url: "/admin/users",
     forAdmin: true,

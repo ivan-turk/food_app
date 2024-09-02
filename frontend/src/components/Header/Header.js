@@ -6,7 +6,6 @@ import { useAuth } from "../../hooks/useAuth";
 
 export default function Header() {
   const { user, logout } = useAuth();
-
   const { cart } = useCart();
 
   return (
@@ -19,7 +18,9 @@ export default function Header() {
           <ul>
             {user ? (
               <li className={classes.menu_container}>
-                <Link to="/dashboard">{user.name}</Link>
+                <Link to="/dashboard">
+                  {user.name} {user.isAdmin && "(Admin)"}
+                </Link>
                 <div className={classes.menu}>
                   <Link to="/profile">Moj profil</Link>
                   <Link to="/orders">Moje narudžbe</Link>

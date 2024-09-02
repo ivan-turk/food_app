@@ -1,7 +1,5 @@
 import { model, Schema } from "mongoose";
 
-// izrada user schema - ID će biti automatski dodan u bazi...
-
 export const UserSchema = new Schema(
   {
     name: { type: String, required: true },
@@ -9,6 +7,7 @@ export const UserSchema = new Schema(
     password: { type: String, required: true },
     address: { type: String, required: true },
     isAdmin: { type: Boolean, default: false },
+    isBlocked: { type: Boolean, default: false },
   },
   {
     timestamps: true,

@@ -5,6 +5,8 @@ import { BAD_REQUEST } from "../constants/httpStatus.js";
 import handler from "express-async-handler";
 import { UserModel } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
+import auth from "../middleware/auth.mid.js";
+import admin from "../middleware/admin.mid.js";
 const PASSWORD_HASH_SALT_ROUNDS = 10;
 
 router.post(
@@ -13,12 +15,25 @@ router.post(
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email });
 
-    if (user && (await bcrypt.compare(password, user.password))) {
-      res.send(generateTokenResponse(user));
-      return;
+    if (!user) {
+      return res
+        .status(BAD_REQUEST)
+        .send("Netočno korisničko ime ili lozinka!");
     }
 
-    res.status(BAD_REQUEST).send("Netočno korisničko ime ili lozinka!");
+    if (user.isBlocked) {
+      return res
+        .status(403)
+        .send("Vaš račun je blokiran, obratite se Vašem IT administratoru!");
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (isPasswordValid) {
+      res.send(generateTokenResponse(user));
+    } else {
+      res.status(BAD_REQUEST).send("Netočno korisničko ime ili lozinka!");
+    }
   })
 );
 
@@ -32,7 +47,7 @@ router.post(
     if (user) {
       res
         .status(BAD_REQUEST)
-        .send("Postojeći korisnik! Molimo prijavite se u sustav!");
+        .send("Korisnik već postoji, molimo prijavite se!");
       return;
     }
 
@@ -53,7 +68,107 @@ router.post(
   })
 );
 
-// generirani token za enkripciju podataka iz json web token modula
+router.put(
+  "/updateProfile",
+  auth,
+  handler(async (req, res) => {
+    const { name, address } = req.body;
+    const user = await UserModel.findByIdAndUpdate(
+      req.user.id,
+      { name, address },
+      { new: true }
+    );
+
+    res.send(generateTokenResponse(user));
+  })
+);
+
+router.put(
+  "/changePassword",
+  auth,
+  handler(async (req, res) => {
+    const { currentPassword, newPassword } = req.body;
+    const user = await UserModel.findById(req.user.id);
+
+    if (!user) {
+      res.status(BAD_REQUEST).send("Promjena lozinke neuspješna!");
+      return;
+    }
+
+    const equal = await bcrypt.compare(currentPassword, user.password);
+
+    if (!equal) {
+      res.status(BAD_REQUEST).send("Trenutna lozinka nije ispravna!");
+      return;
+    }
+
+    user.password = await bcrypt.hash(newPassword, PASSWORD_HASH_SALT_ROUNDS);
+    await user.save();
+
+    res.send();
+  })
+);
+
+router.get(
+  "/getall/:searchTerm?",
+  admin,
+  handler(async (req, res) => {
+    const { searchTerm } = req.params;
+
+    const filter = searchTerm
+      ? { name: { $regex: new RegExp(searchTerm, "i") } }
+      : {};
+
+    const users = await UserModel.find(filter, { password: 0 });
+    res.send(users);
+  })
+);
+
+router.put(
+  "/toggleBlock/:userId",
+  admin,
+  handler(async (req, res) => {
+    const { userId } = req.params;
+
+    if (userId === req.user.id) {
+      res.status(BAD_REQUEST).send("Ne možete blokirati sami sebe!");
+      return;
+    }
+
+    const user = await UserModel.findById(userId);
+    user.isBlocked = !user.isBlocked;
+    user.save();
+
+    res.send(user.isBlocked);
+  })
+);
+
+router.get(
+  "/getById/:userId",
+  admin,
+  handler(async (req, res) => {
+    const { userId } = req.params;
+    const user = await UserModel.findById(userId, { password: 0 });
+    res.send(user);
+  })
+);
+
+router.put(
+  "/update",
+  admin,
+  handler(async (req, res) => {
+    const { id, name, email, address, isAdmin } = req.body;
+    await UserModel.findByIdAndUpdate(id, {
+      name,
+      email,
+      address,
+      isAdmin,
+    });
+
+    res.send();
+  })
+);
+
 const generateTokenResponse = (user) => {
   const token = jwt.sign(
     {

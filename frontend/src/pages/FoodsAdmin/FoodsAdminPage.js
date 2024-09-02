@@ -32,26 +32,26 @@ export default function FoodsAdminPage() {
   };
 
   const deleteFood = async (food) => {
-    const confirmed = window.confirm(`Obrisati artikl ${food.name}?`);
+    const confirmed = window.confirm(`Delete Food ${food.name}?`);
     if (!confirmed) return;
 
     await deleteById(food.id);
-    toast.success(`"${food.name}" je obrisan!`);
+    toast.success(`"${food.name}" Has Been Removed!`);
     setFoods(foods.filter((f) => f.id !== food.id));
   };
 
   return (
     <div className={classes.container}>
       <div className={classes.list}>
-        <Title title="Upravitelj artikala" margin="1rem auto" />
+        <Title title="Uređivanje artikala" margin="1rem auto" />
         <Search
           searchRoute="/admin/foods/"
           defaultRoute="/admin/foods"
           margin="1rem 0"
-          placeholder="Search Foods"
+          placeholder="Pretraga artikala!"
         />
         <Link to="/admin/addFood" className={classes.add_food}>
-          Dodaj artikl +
+          Dodaj Artikl +
         </Link>
         <FoodsNotFound />
         {foods &&

@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import HomePage from "./pages/Home/HomePage";
-import FoodPage from "./pages/Food/FoodPage";
 import CartPage from "./pages/Cart/CartPage";
+import FoodPage from "./pages/Food/FoodPage";
+import HomePage from "./pages/Home/HomePage";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
 import AuthRoute from "./components/AuthRoute/AuthRoute";
@@ -12,6 +12,8 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import AdminRoute from "./components/AdminRoute/AdminRoute";
 import FoodsAdminPage from "./pages/FoodsAdmin/FoodsAdminPage";
 import FoodEditPage from "./pages/FoodEdit/FoodEditPage";
+import UsersPage from "./pages/UsersPage/UsersPage";
+import UserEditPage from "./pages/UserEdit/UserEditPage";
 
 export default function AppRoutes() {
   return (
@@ -39,6 +41,7 @@ export default function AppRoutes() {
           </AuthRoute>
         }
       />
+
       <Route
         path="/dashboard"
         element={
@@ -55,6 +58,7 @@ export default function AppRoutes() {
           </AdminRoute>
         }
       />
+
       <Route
         path="/admin/addFood"
         element={
@@ -68,6 +72,23 @@ export default function AppRoutes() {
         element={
           <AdminRoute>
             <FoodEditPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/users/:searchTerm?"
+        element={
+          <AdminRoute>
+            <UsersPage />
+          </AdminRoute>
+        }
+      />
+
+      <Route
+        path="/admin/editUser/:userId"
+        element={
+          <AdminRoute>
+            <UserEditPage />
           </AdminRoute>
         }
       />

@@ -43,7 +43,7 @@ export default function FoodsAdminPage() {
   return (
     <div className={classes.container}>
       <div className={classes.list}>
-        <Title title="Manage Foods" margin="1rem auto" />
+        <Title title="Upravitelj artikala" margin="1rem auto" />
         <Search
           searchRoute="/admin/foods/"
           defaultRoute="/admin/foods"

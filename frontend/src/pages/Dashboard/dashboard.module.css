@@ -38,3 +38,9 @@
   font-size: 1.5rem;
   margin-right: 2rem;
 }
+
+.disabled {
+  pointer-events: none; /* Onemogućuje interakciju s elementom */
+  opacity: 0.5; /* Čini element manje vidljivim */
+  cursor: not-allowed; /* Promjena kursora na "zabranjeno" */
+}

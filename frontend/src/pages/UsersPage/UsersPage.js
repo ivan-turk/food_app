@@ -33,7 +33,7 @@ export default function UsersPage() {
   return (
     <div className={classes.container}>
       <div className={classes.list}>
-        <Title title="Manage Users" />
+        <Title title="Upravljanje korisnicima" />
         <Search
           searchRoute="/admin/users/"
           defaultRoute="/admin/users"
@@ -41,11 +41,11 @@ export default function UsersPage() {
           margin="1rem 0"
         />
         <div className={classes.list_item}>
-          <h3>Name</h3>
-          <h3>Email</h3>
-          <h3>Address</h3>
+          <h3>Ime i prezime</h3>
+          <h3>E-mail</h3>
+          <h3>Adresa</h3>
           <h3>Admin</h3>
-          <h3>Actions</h3>
+          <h3>Opcije</h3>
         </div>
         {users &&
           users.map((user) => (
@@ -55,10 +55,10 @@ export default function UsersPage() {
               <span>{user.address}</span>
               <span>{user.isAdmin ? "✅" : "❌"}</span>
               <span className={classes.actions}>
-                <Link to={"/admin/editUser/" + user.id}>Edit</Link>
+                <Link to={"/admin/editUser/" + user.id}>Uredi</Link>
                 {auth.user.id !== user.id && (
                   <Link onClick={() => handleToggleBlock(user.id)}>
-                    {user.isBlocked ? "Unblock" : "Block"}
+                    {user.isBlocked ? "Odblokiraj" : "Blokiraj"}
                   </Link>
                 )}
               </span>

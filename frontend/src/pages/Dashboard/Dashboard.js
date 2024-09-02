@@ -19,6 +19,13 @@ export default function Dashboard() {
                 backgroundColor: item.bgColor,
                 color: item.color,
               }}
+              //disablane funkcionalnosti koje nisu još napravljene!!!!
+              className={
+                item.title === "Narudžbe - u izradi..." ||
+                item.title === "Moj profil - u izradi..."
+                  ? classes.disabled
+                  : ""
+              }
             >
               <img src={item.imageUrl} alt={item.title} />
               <h2>{item.title}</h2>
@@ -31,14 +38,14 @@ export default function Dashboard() {
 
 const allItems = [
   {
-    title: "Narudžbe",
+    title: "Narudžbe - u izradi...",
     imageUrl: "/icons/orders.svg",
     url: "/orders",
     bgColor: "#ec407a",
     color: "white",
   },
   {
-    title: "Moj profil",
+    title: "Moj profil - u izradi...",
     imageUrl: "/icons/profile.svg",
     url: "/profile",
     bgColor: "#1565c0",

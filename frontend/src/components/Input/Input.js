@@ -19,11 +19,16 @@ function Input(
     }
   };
 
+  const inputClass =
+    type === "checkbox"
+      ? `${classes.input} ${classes.checkbox}`
+      : classes.input;
+
   return (
     <InputContainer label={label}>
       <input
         defaultValue={defaultValue}
-        className={classes.input}
+        className={inputClass}
         type={type}
         placeholder={label}
         ref={ref}

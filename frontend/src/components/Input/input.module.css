@@ -18,6 +18,11 @@
   border-width: 2.9px;
 }
 
+.checkbox {
+  transform: scale(0.8);
+  margin: 0.5rem;
+}
+
 .error {
   display: flex;
   justify-content: center;

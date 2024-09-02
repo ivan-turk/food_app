@@ -35,26 +35,30 @@ export default function UserEditPage() {
   return (
     <div className={classes.container}>
       <div className={classes.content}>
-        <Title title={isEditMode ? "Edit User" : "Add User"} />
+        <Title title={isEditMode ? "Uredi korisnika" : "Dodaj korisnika"} />
         <form onSubmit={handleSubmit(submit)} noValidate>
           <Input
-            label="Name"
+            label="Ime i Prezime"
             {...register("name", { required: true, minLength: 3 })}
             error={errors.name}
           />
           <Input
-            label="Email"
+            label="E-mail"
             {...register("email", { required: true, pattern: EMAIL })}
             error={errors.email}
           />
           <Input
-            label="Address"
+            label="Adresa"
             {...register("address", { required: true, minLength: 5 })}
             error={errors.address}
           />
 
-          <Input label="Is Admin" type="checkbox" {...register("isAdmin")} />
-          <Button type="submit" />
+          <Input
+            label="Administrator"
+            type="checkbox"
+            {...register("isAdmin")}
+          />
+          <Button type="submit" text="Spremi" />
         </form>
       </div>
     </div>

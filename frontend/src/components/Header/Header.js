@@ -22,8 +22,7 @@ export default function Header() {
                   {user.name} {user.isAdmin && "(Admin)"}
                 </Link>
                 <div className={classes.menu}>
-                  <Link to="/profile">Moj profil</Link>
-                  <Link to="/orders">Moje narudžbe</Link>
+                  <Link to="/dashboard">Nadzorna ploča</Link>
                   <button onClick={logout} className={classes.logout_button}>
                     Odjava korisnika
                   </button>

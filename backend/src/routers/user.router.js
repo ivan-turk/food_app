@@ -22,9 +22,7 @@ router.post(
     }
 
     if (user.isBlocked) {
-      return res
-        .status(403)
-        .send("Vaš račun je blokiran, obratite se Vašem IT administratoru!");
+      return res.status(403).send("Vaš račun je blokiran!");
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);

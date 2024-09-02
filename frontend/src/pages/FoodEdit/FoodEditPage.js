@@ -98,7 +98,7 @@ export default function FoodEditPage() {
           <Input
             type="text"
             label="Origins"
-            {...register("origins", { required: true })}
+            {...register("origins", { required: false })}
             error={errors.origins}
           />
 

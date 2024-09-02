@@ -1,12 +1,9 @@
-// Interceptor "sluša" zahtjeve (request/response) prema serveru te ćemo ga koristiti za Loading animaciju
-
 import axios from "axios";
 
 export const setLoadingInterceptor = ({ showLoading, hideLoading }) => {
-  //request prema serveru:
   axios.interceptors.request.use(
     (req) => {
-      showLoading();
+      if (!(req.data instanceof FormData)) showLoading();
       return req;
     },
     (error) => {
@@ -15,7 +12,6 @@ export const setLoadingInterceptor = ({ showLoading, hideLoading }) => {
     }
   );
 
-  //resposnse sa servera prema klijentu:
   axios.interceptors.response.use(
     (res) => {
       hideLoading();

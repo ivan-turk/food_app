@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getAll = async () => {
-  const { data } = await axios.get("/api/foods/");
+  const { data } = await axios.get("/api/foods");
   return data;
 };
 
@@ -10,15 +10,13 @@ export const search = async (searchTerm) => {
   return data;
 };
 
-//Asinkrona funkcija za sve 'tagove':
-
 export const getAllTags = async () => {
-  const { data } = await axios.get("/api/foods/tags/");
+  const { data } = await axios.get("/api/foods/tags");
   return data;
 };
 
 export const getAllByTag = async (tag) => {
-  if (tag === "Sve") return getAll();
+  if (tag === "All") return getAll();
   const { data } = await axios.get("/api/foods/tag/" + tag);
   return data;
 };
